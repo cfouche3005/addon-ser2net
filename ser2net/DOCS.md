@@ -47,6 +47,22 @@ connections:
     kickolduser: true
 ```
 
+This will generate the following ser2net.yaml:
+
+```yaml
+default:
+  name: mdns
+  value: false
+
+connection: &serial1
+  accepter: tcp,2001
+  connector: serialdev,/dev/ttyS0,9600n81,local
+  options:
+    enable: on
+    kickolduser: true
+    max-connections: 5
+```
+
 **Note**: _This is just an example, don't copy and paste it! Create your own!_
 
 ### Option: `log_level`
