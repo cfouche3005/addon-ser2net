@@ -27,6 +27,6 @@ schema:
       baud: int
       parity: list(none|even|odd)
       stopbits: int(1|2)
-      databits: int(5|6|7|8)
+      databits: int(5|8)
       max_connections: int(1,100)?
       kickolduser: bool?
