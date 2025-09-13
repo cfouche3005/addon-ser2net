@@ -11,6 +11,9 @@ mkdir -p /etc/ser2net
 
 # Start building the YAML config
 {
+    echo "default:"
+    echo "  name: mdns"
+    echo "  value: false"
     echo ""
 } > "${CONFIG_FILE}"
 
