@@ -43,6 +43,7 @@ for connection in $(bashio::config "connections|keys"); do
         echo "  accepter: tcp,${port}"
         echo "  connector: ${connector}"
         echo "  enable: on"
+        echo " mdns: false"
         echo "  options:"
         if bashio::config.true "connections[${connection}].kickolduser"; then
             echo "    kickolduser: true"
