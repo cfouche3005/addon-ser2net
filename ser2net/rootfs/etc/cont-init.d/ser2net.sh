@@ -25,7 +25,15 @@ for connection in $(bashio::config "connections|keys"); do
     databits=$(bashio::config "connections[${connection}].databits")
 
     # Build the connector string
-    connector="serialdev,${device},${baud}${databits}${parity:0:1}${stopbits}"
+    # Convert parity to ser2net format
+    case "${parity}" in
+        "none") parity_code="n" ;;
+        "even") parity_code="e" ;;
+        "odd") parity_code="o" ;;
+        *) parity_code="n" ;;  # default to none
+    esac
+    
+    connector="serialdev,${device},${baud}${parity_code}${databits}${stopbits},local"
 
     {
         echo "connection: &${name}"
