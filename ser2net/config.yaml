@@ -1,5 +1,5 @@
 name: Ser2net
-version: 1.0.1
+version: 1.0.2
 slug: ser2net
 description: Serial to Network Proxy
 url: https://github.com/cfouche3005/addon-ser2net
@@ -17,12 +17,16 @@ uart: true
 udev: true
 options:
   log_level: info
-  config: |
-    connection: &serial1
-      accepter: tcp,2001
-      connector: serialdev,/dev/ttyS0,9600N81
-      options:
-        banner: *banner
+  connections: []
 schema:
   log_level: list(trace|debug|info|notice|warning|error|critical|alert|emergency)
-  config: str
+  connections:
+    - name: str
+      port: int(1,65535)
+      device: str
+      baud: int
+      parity: list(none|even|odd)
+      stopbits: int(1|2)
+      databits: int(5|6|7|8)
+      max_connections: int(1,100)?
+      kickolduser: bool?

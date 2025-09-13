@@ -35,12 +35,15 @@ Ser2net add-on configuration:
 
 ```yaml
 log_level: info
-config: |
-  connection: &serial1
-    accepter: tcp,2001
-    connector: serialdev,/dev/ttyS0,9600N81
-    options:
-      banner: *banner
+connections:
+  - name: mydevice
+    port: 2000
+    device: /dev/ttyUSB0
+    baud: 9600
+    parity: none
+    stopbits: 1
+    databits: 8
+    max_connections: 5
 ```
 
 **Note**: _This is just an example, don't copy and paste it! Create your own!_
@@ -61,9 +64,45 @@ The `log_level` option controls the level of log output by the add-on and can be
 
 Please note that each level automatically includes log messages from a more severe level, e.g., `debug` also shows `info` messages. By default, the `log_level` is set to `info`, which is the recommended setting unless you are troubleshooting.
 
-### Option: `config`
+### Option: `connections`
 
-The raw ser2net YAML configuration. Copy your ser2net.yaml content directly here.
+This option allows you to specify a list of serial connections to proxy.
+
+#### Sub-option: `name`
+
+The name of the connection.
+
+#### Sub-option: `port`
+
+The TCP port to listen on.
+
+#### Sub-option: `device`
+
+The serial device path (e.g., /dev/ttyUSB0).
+
+#### Sub-option: `baud`
+
+The baud rate for the serial connection.
+
+#### Sub-option: `parity`
+
+The parity setting: `none`, `even`, or `odd`.
+
+#### Sub-option: `stopbits`
+
+The number of stop bits: `1` or `2`.
+
+#### Sub-option: `databits`
+
+The number of data bits: `5`, `6`, `7`, or `8`.
+
+#### Sub-option: `max_connections` (optional)
+
+The maximum number of simultaneous connections allowed for this serial device. Valid range: 1-100. If not specified, connections are unlimited.
+
+#### Sub-option: `kickolduser` (optional)
+
+Whether to kick the old user when a new connection is made.
 
 ## Support
 
