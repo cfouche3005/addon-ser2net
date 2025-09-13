@@ -1,0 +1,7 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Home Assistant Community Add-on: Ser2net
+# Runs Ser2net
+# ==============================================================================
+
+exec ser2net -c /etc/ser2net/ser2net.yaml

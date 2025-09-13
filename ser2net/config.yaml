@@ -1,0 +1,27 @@
+name: Ser2net
+version: 1.0.0
+slug: ser2net
+description: Serial to Network Proxy
+url: https://github.com/cfouche3005/addon-ser2net
+arch:
+  - amd64
+  - armv7
+  - aarch64
+  - armhf
+  - i386
+startup: services
+boot: auto
+host_network: true
+uart: true
+udev: true
+options:
+  log_level: info
+  config: |
+    connection: &serial1
+      accepter: tcp,2001
+      connector: serialdev,/dev/ttyS0,9600N81
+      options:
+        banner: *banner
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|critical|alert|emergency)
+  config: str

@@ -1,0 +1,8 @@
+build_from:
+  amd64: ghcr.io/hassio-addons/debian-base:8.0.0
+  armv7: ghcr.io/hassio-addons/debian-base:8.0.0
+  aarch64: ghcr.io/hassio-addons/debian-base:8.0.0
+  armhf: ghcr.io/hassio-addons/debian-base:8.0.0
+  i386: ghcr.io/hassio-addons/debian-base:8.0.0
+args:
+  BUILD_FROM: ghcr.io/hassio-addons/debian-base:8.0.0

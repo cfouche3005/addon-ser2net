@@ -12,13 +12,61 @@ Ser2net provides a way for a user to connect from a network connection to a seri
 
 The Ser2net project is the combined effort of many individuals.
 
-Be sure to add the add-on after starting it.
+## Installation
 
-**Note**: _The addon uses host networking to expose the configured ports_
+The installation of this add-on is pretty straightforward and not different in comparison to installing any other Home Assistant add-on.
 
-For more information on how to use ser2net, see the [Ser2net documentation][ser2net-docs].
+1. Click the Home Assistant My button below to open the add-on on your Home Assistant instance.
 
-[:books: Read the full add-on documentation][docs]
+   [![Open this add-on in your Home Assistant instance.][addon-badge]][addon]
+
+1. Click the "Install" button to install the add-on.
+1. Configure the `connections` options.
+1. Start the "Ser2net" add-on.
+1. Check the logs of the "Ser2net" add-on to see if everything went well.
+
+## Configuration
+
+The add-on can be used with the basic configuration, with other options for more advanced users.
+
+**Note**: _Remember to restart the add-on when the configuration is changed._
+
+Ser2net add-on configuration:
+
+```yaml
+log_level: info
+config: |
+  define: &banner
+    BANNER: "Ser2net proxy\r\n"
+
+  connection: &serial1
+    accepter: tcp,2001
+    connector: serialdev,/dev/ttyS0,9600N81
+    options:
+      banner: *banner
+```
+
+**Note**: _This is just an example, don't copy and paste it! Create your own!_
+
+### Option: `log_level`
+
+The `log_level` option controls the level of log output by the add-on and can be changed to be more or less verbose, which might be useful when you are dealing with an unknown issue. Possible values are:
+
+- `trace`: Show every detail, like all called internal functions.
+- `debug`: Shows detailed debug information.
+- `info`: Normal (usually) interesting events.
+- `notice`: Normal but significant events.
+- `warning`: Exceptional occurrences that are not errors.
+- `error`: Runtime errors that do not require immediate action.
+- `critical`: Critical conditions.
+- `alert`: Action must be taken immediately.
+- `emergency`: System is unusable.
+
+Please note that each level automatically includes log messages from a more severe level, e.g., `debug` also shows `info` messages. By default, the `log_level` is set to `info`, which is the recommended setting unless you are troubleshooting.
+
+### Option: `config`
+
+This option contains the raw ser2net YAML configuration. You can copy your existing ser2net.yaml content directly here. Refer to the [ser2net documentation](https://ser2net.github.io/ser2net/ser2net.yaml.html) for the configuration format.
 
 ## Support
 
@@ -59,12 +107,13 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+[addon-badge]: https://my.home-assistant.io/badges/supervisor_addon.svg
+[addon]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=ser2net&repository_url=https%3A%2F%2Fgithub.com%2Fcfouche3005%2Faddon-ser2net
 [cfouche3005]: https://github.com/cfouche3005
 [contributors]: https://github.com/cfouche3005/addon-ser2net/graphs/contributors
 [discord-ha]: https://discord.gg/c5DvZ4e
 [discord-shield]: https://img.shields.io/discord/478094546522079232.svg
 [discord]: https://discord.me/hassioaddons
-[docs]: https://github.com/cfouche3005/addon-ser2net/blob/main/ser2net/DOCS.md
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
 [forum]: https://community.home-assistant.io/
 [issue]: https://github.com/cfouche3005/addon-ser2net/issues
@@ -73,4 +122,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [reddit]: https://reddit.com/r/homeassistant
 [release-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg
 [release]: https://github.com/cfouche3005/addon-ser2net/tree/1.0.0
-[ser2net-docs]: https://ser2net.sourceforge.io/
