@@ -1,5 +1,5 @@
 name: Ser2net
-version: 1.0.0
+version: 1.0.1
 slug: ser2net
 description: Serial to Network Proxy
 url: https://github.com/cfouche3005/addon-ser2net
@@ -12,6 +12,7 @@ arch:
 startup: services
 boot: auto
 host_network: true
+init: false
 uart: true
 udev: true
 options:
