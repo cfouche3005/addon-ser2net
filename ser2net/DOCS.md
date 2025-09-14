@@ -50,10 +50,6 @@ connections:
 This will generate the following ser2net.yaml:
 
 ```yaml
-default:
-  name: mdns
-  value: false
-
 connection: &serial1
   accepter: tcp,2001
   connector: serialdev,/dev/ttyS0,9600n81,local
@@ -63,7 +59,7 @@ connection: &serial1
     max-connections: 5
 ```
 
-**Note**: _This is just an example, don't copy and paste it! Create your own!_
+**Note**: MDNS is automatically disabled via command line option for optimal performance.
 
 ### Option: `log_level`
 
