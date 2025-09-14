@@ -4,4 +4,4 @@
 # Runs Ser2net
 # ==============================================================================
 
-exec ser2net -c /etc/ser2net/ser2net.yaml
+exec ser2net -l -c /etc/ser2net/ser2net.yaml
